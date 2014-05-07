@@ -1,4 +1,12 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => References
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"
+" https://github.com/scrooloose/vimfiles
+" https://github.com/amix/vimrc
+"
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => General
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Sets how many lines of history VIM has to remember
@@ -385,12 +393,38 @@ endfunction
 " Now any plugins you wish to install can be extracted to a subdirectory under ~/.vim/bundle, and they will be added to the 'runtimepath'. 
 execute pathogen#infect()
 
-" NERDTree
+" UI
+" https://github.com/scrooloose/nerdtree
 autocmd vimenter * NERDTree
 autocmd vimenter * if !argc() | NERDTree | endif
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+let NERDTreeIgnore=['\~$', '\.py\(c\|o\)$', '\.\(git\|svn\)$', '^\.\(DS_Store\|tags\)$']
+let NERDTreeShowHidden=1
 
-" vim-autopep8
+" python
+" https://github.com/tell-k/vim-autopep8
 let g:autopep8_disable_show_diff=1
 "autocmd FileType python map <buffer> <F3> :call Autopep8()<CR>
+
+" misc
+" https://github.com/itchyny/calendar.vim
+let g:calendar_first_day = "monday"
+let g:calendar_google_calendar = 5
+let g:calendar_google_task = 1
+" https://github.com/emgram769/vim-multiuser
+" https://github.com/Valloric/YouCompleteMe
+" https://github.com/scrooloose/syntastic
+
+" git
+" https://github.com/tpope/vim-fugitive
+
+" javascript
+" https://github.com/Shutnik/jshint2.vim
+" https://github.com/marijnh/tern_for_vim
+
+" taglist.vim
+" http://www.vim.org/scripts/script.php?script_id=273
+" php.vim
+" http://www.vim.org/scripts/script.php?script_id=604
+"
