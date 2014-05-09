@@ -92,10 +92,6 @@ set showcmd
 " Enable mouse support in console
 set mouse=a
 
-" ctags, jsctags
-set tags=./tags,tags;/
-
-" http://www.vim.org/scripts/script.php?script_id=3465
 " tagbar
 nmap tt :TagbarToggle
 
@@ -217,12 +213,21 @@ endtry
 
 " Return to last edit position when opening files (You want this!)
 autocmd BufReadPost *
-\ if line("'\"") > 0 && line("'\"") <= line("$") |
-\   exe "normal! g`\"" |
-\ endif
+            \ if line("'\"") > 0 && line("'\"") <= line("$") |
+            \   exe "normal! g`\"" |
+            \ endif
 " Remember info about open buffers on close
 set viminfo^=%
 
+" ctags, jsctags
+set tags=./tags,tags;/
+" http://andrewradev.com/2011/06/08/vim-and-ctags/
+autocmd BufWritePost *
+            \ if filereadable('tags') |
+            \   call system('ctags -a '.expand('%')) |
+            \ endif
+" tag completion
+inoremap <c-x><c-]> <c-]>
 
 """"""""""""""""""""""""""""""
 " => Status line
@@ -393,7 +398,7 @@ endfunction
 " Now any plugins you wish to install can be extracted to a subdirectory under ~/.vim/bundle, and they will be added to the 'runtimepath'. 
 execute pathogen#infect()
 
-" UI
+" NERDTree
 " https://github.com/scrooloose/nerdtree
 autocmd vimenter * NERDTree
 autocmd vimenter * if !argc() | NERDTree | endif
@@ -402,29 +407,41 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 let NERDTreeIgnore=['\~$', '\.py\(c\|o\)$', '\.\(git\|svn\)$', '^\.\(DS_Store\|tags\)$']
 let NERDTreeShowHidden=1
 
-" python
+" python enforce pep8
 " https://github.com/tell-k/vim-autopep8
 let g:autopep8_disable_show_diff=1
 "autocmd FileType python map <buffer> <F3> :call Autopep8()<CR>
 
-" misc
+" automatically update tags on saving
+" https://github.com/craigemery/vim-autotag
+
+" calendar (with google calendar connection)
 " https://github.com/itchyny/calendar.vim
 let g:calendar_first_day = "monday"
 let g:calendar_google_calendar = 5
 let g:calendar_google_task = 1
+
+" multiuser vim
 " https://github.com/emgram769/vim-multiuser
+
+" fuzzy logic autocomplete
 " https://github.com/Valloric/YouCompleteMe
+
+" syntax checker for multiple languages
 " https://github.com/scrooloose/syntastic
 
-" git
+" git commands
 " https://github.com/tpope/vim-fugitive
 
 " javascript
 " https://github.com/Shutnik/jshint2.vim
 " https://github.com/marijnh/tern_for_vim
 
+" tagbar
+" http://www.vim.org/scripts/script.php?script_id=3465
+
 " taglist.vim
 " http://www.vim.org/scripts/script.php?script_id=273
+
 " php.vim
 " http://www.vim.org/scripts/script.php?script_id=604
-"
