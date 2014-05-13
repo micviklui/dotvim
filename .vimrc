@@ -220,6 +220,7 @@ autocmd BufReadPost *
 set viminfo^=%
 
 " ctags, jsctags
+" invoke 'ctags .' in root dir
 set tags=./tags,tags;/
 " http://andrewradev.com/2011/06/08/vim-and-ctags/
 autocmd BufWritePost *
@@ -247,7 +248,7 @@ inoremap jj <Esc>
 nnoremap JJJJ <Nop>
 
 " Remap VIM 0 to first non-blank character
-map 0 ^
+"map 0 ^
 
 " Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
 nmap <M-j> mz:m+<cr>`z
@@ -324,7 +325,7 @@ map <leader>s? z=
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
-" Quickly open a buffer for scripbble
+" Quickly open a buffer for scribble
 map <leader>q :e ~/buffer<cr>
 
 " Toggle paste mode on and off
@@ -445,3 +446,8 @@ let g:calendar_google_task = 1
 
 " php.vim
 " http://www.vim.org/scripts/script.php?script_id=604
+
+" yankring
+" http://www.vim.org/scripts/script.php?script_id=1234
+"nnoremap <silent> <F3> :YRShow<cr>
+"inoremap <silent> <F3> <ESC>:YRShow<cr>
