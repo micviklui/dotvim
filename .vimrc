@@ -433,6 +433,10 @@ let g:calendar_google_task = 1
 " fuzzy logic autocomplete
 " https://github.com/Valloric/YouCompleteMe
 
+" python
+" pyflakes
+" https://github.com/davidhalter/jedi-vim
+
 " syntax checker for multiple languages
 " https://github.com/scrooloose/syntastic
 
