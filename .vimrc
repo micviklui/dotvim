@@ -4,6 +4,7 @@
 "
 " https://github.com/scrooloose/vimfiles
 " https://github.com/amix/vimrc
+" http://vim.spf13.com/
 "
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -204,6 +205,9 @@ map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
+" automatically change window's cwd to file's dir
+set autochdir
+
 " Specify the behavior when switching between buffers 
 try
 set switchbuf=useopen,usetab,newtab
@@ -400,6 +404,8 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Pathogen package manager
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" https://github.com/gmarik/Vundle.vim (alternative to pathogen)
+
 " Now any plugins you wish to install can be extracted to a subdirectory under ~/.vim/bundle, and they will be added to the 'runtimepath'. 
 let g:pathogen_disabled = ['yankring']
 execute pathogen#infect()
@@ -412,11 +418,6 @@ map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 let NERDTreeIgnore=['\~$', '\.py\(c\|o\)$', '\.\(git\|svn\)$', '^\.\(DS_Store\|tags\)$']
 let NERDTreeShowHidden=1
-
-" python enforce pep8
-" https://github.com/tell-k/vim-autopep8
-let g:autopep8_disable_show_diff=1
-"autocmd FileType python map <buffer> <F3> :call Autopep8()<CR>
 
 " automatically update tags on saving
 " https://github.com/craigemery/vim-autotag
@@ -433,14 +434,32 @@ let g:calendar_google_task = 1
 " fuzzy logic autocomplete
 " https://github.com/Valloric/YouCompleteMe
 
-" python
-" pyflakes
-" https://github.com/davidhalter/jedi-vim
+" python 
 
-" syntax checker for multiple languages
+" python enforce pep8
+" https://github.com/tell-k/vim-autopep8
+let g:autopep8_disable_show_diff=1
+"autocmd FileType python map <buffer> <F3> :call Autopep8()<CR>
+
+" https://github.com/fs111/pydoc.vim
+
+" https://github.com/klen/python-mode.git
+" https://github.com/davidhalter/jedi-vim (alternative to python-mode)
+let g:jedi#use_tabs_not_buffers = 0
+let g:jedi#use_splits_not_buffers = "left"
+" https://github.com/ervandew/supertab
+
+" https://github.com/rkulla/pydiction.git
+let g:pydiction_location = '~/.vim/bundle/pydiction/complete-dict'
+let g:pydiction_menu_height = 3
+
+" python 
+
+" syntastic - syntax checker for multiple languages
 " https://github.com/scrooloose/syntastic
+" pip install --upgrade pyflakes
 
-" git commands
+" git
 " https://github.com/tpope/vim-fugitive
 
 " javascript
@@ -449,8 +468,7 @@ let g:calendar_google_task = 1
 
 " tagbar
 " http://www.vim.org/scripts/script.php?script_id=3465
-
-" taglist.vim
+" taglist.vim alternative(!) to tagbar
 " http://www.vim.org/scripts/script.php?script_id=273
 
 " php.vim
@@ -461,3 +479,6 @@ let g:calendar_google_task = 1
 " https://github.com/vim-scripts/YankRing.vim
 "nnoremap <silent> <F3> :YRShow<cr>
 "inoremap <silent> <F3> <ESC>:YRShow<cr>
+
+" powerline
+" https://github.com/Lokaltog/powerline
