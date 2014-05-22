@@ -230,6 +230,10 @@ autocmd BufWritePost *
 " tag completion
 inoremap <c-x><c-]> <c-]>
 
+" moving in python code
+" http://justinlilly.com/vim/vim_and_python.html
+"
+
 """"""""""""""""""""""""""""""
 " => Status line
 """"""""""""""""""""""""""""""
@@ -397,6 +401,7 @@ endfunction
 " => Pathogen package manager
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Now any plugins you wish to install can be extracted to a subdirectory under ~/.vim/bundle, and they will be added to the 'runtimepath'. 
+let g:pathogen_disabled = ['yankring']
 execute pathogen#infect()
 
 " NERDTree
@@ -449,5 +454,6 @@ let g:calendar_google_task = 1
 
 " yankring
 " http://www.vim.org/scripts/script.php?script_id=1234
+" https://github.com/vim-scripts/YankRing.vim
 "nnoremap <silent> <F3> :YRShow<cr>
 "inoremap <silent> <F3> <ESC>:YRShow<cr>
