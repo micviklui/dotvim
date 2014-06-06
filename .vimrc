@@ -224,7 +224,8 @@ autocmd BufReadPost *
 set viminfo^=%
 
 " ctags, jsctags
-" invoke 'ctags .' in root dir
+" invoke 'ctags -R .' in root dir
+" python -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"
 set tags=./tags,tags;/
 " http://andrewradev.com/2011/06/08/vim-and-ctags/
 autocmd BufWritePost *
@@ -446,7 +447,14 @@ let g:autopep8_disable_show_diff=1
 " https://github.com/klen/python-mode.git
 " https://github.com/davidhalter/jedi-vim (alternative to python-mode)
 let g:jedi#use_tabs_not_buffers = 0
-let g:jedi#use_splits_not_buffers = "left"
+let g:jedi#use_splits_not_buffers = "top"
+"let g:jedi#goto_assignments_command = "<leader>g"
+"let g:jedi#goto_definitions_command = "<leader>d"
+"let g:jedi#documentation_command = "K"
+"let g:jedi#usages_command = "<leader>n"
+"let g:jedi#completions_command = "<C-Space>"
+"let g:jedi#rename_command = "<leader>r"
+"let g:jedi#show_call_signatures = "1"
 " https://github.com/ervandew/supertab
 
 " https://github.com/rkulla/pydiction.git
@@ -458,6 +466,15 @@ let g:pydiction_menu_height = 3
 " syntastic - syntax checker for multiple languages
 " https://github.com/scrooloose/syntastic
 " pip install --upgrade pyflakes
+function! ToggleErrors()
+    if empty(filter(tabpagebuflist(), 'getbufvar(v:val, "&buftype") is# "quickfix"'))
+         " No location/quickfix list shown, open syntastic error location panel
+         Errors
+    else
+        lclose
+    endif
+endfunction
+nnoremap <silent> <C-e> :<C-u>call ToggleErrors()<CR>
 
 " git
 " https://github.com/tpope/vim-fugitive
@@ -474,7 +491,7 @@ let g:pydiction_menu_height = 3
 " php.vim
 " http://www.vim.org/scripts/script.php?script_id=604
 
-" yankring
+" yankring (conflicts with another plugin)
 " http://www.vim.org/scripts/script.php?script_id=1234
 " https://github.com/vim-scripts/YankRing.vim
 "nnoremap <silent> <F3> :YRShow<cr>
@@ -482,3 +499,15 @@ let g:pydiction_menu_height = 3
 
 " powerline
 " https://github.com/Lokaltog/powerline
+
+" vim-airline (alternative to powerline)
+" https://github.com/bling/vim-airline
+let g:airline#extensions#tabline#enabled = 1
+" vim bufferline
+" https://github.com/bling/vim-bufferline
+
+" ctrlp (fuzzy file, buffer, mru, tag, ... finder)
+" https://github.com/kien/ctrlp.vim
+
+" vim tmuxline
+" https://github.com/edkolev/tmuxline.vim
