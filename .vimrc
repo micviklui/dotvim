@@ -144,7 +144,7 @@ set tabstop=2
 
 " Linebreak on tw characters
 set lbr
-set tw=90
+set tw=80
 
 set ai "Auto indent
 set si "Smart indent
@@ -282,6 +282,9 @@ endfunc
 autocmd BufWrite *.py :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
 
+" http://vim.wikia.com/wiki/Search_and_replace_the_word_under_the_cursor
+:nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
+
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => vimgrep searching and cope displaying
@@ -340,6 +343,8 @@ map <leader>q :e ~/buffer<cr>
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
 
+" copy and paste with mouse and <C-c> and <C-v>
+:vmap <C-c> "+y
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -511,3 +516,8 @@ let g:airline#extensions#tabline#enabled = 1
 
 " vim tmuxline
 " https://github.com/edkolev/tmuxline.vim
+
+" vim-rst-tables
+" https://github.com/nvie/vim-rst-tables
+" <leader><leader>c "reformat table
+" <leader><leader>f "reflow table
