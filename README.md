@@ -10,6 +10,7 @@ my vimfile
 │   ├── DrawIt.vim
 │   └── pathogen.vim
 ├── bundle
+│   ├── ctrlp.vim
 │   ├── jedi-vim
 │   ├── nerdtree
 │   ├── syntastic

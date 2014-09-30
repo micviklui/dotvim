@@ -521,3 +521,18 @@ let g:airline#extensions#tabline#enabled = 1
 " https://github.com/nvie/vim-rst-tables
 " <leader><leader>c "reformat table
 " <leader><leader>f "reflow table
+
+" vim ctrlp
+" https://github.com/kien/ctrlp.vim.git
+" only list checked-in files
+let g:ctrlp_user_command = {
+  \ 'types': {
+    \ 1: ['.git', 'cd %s && git ls-files --cached --exclude-standard --others'],
+    \ 2: ['.hg', 'hg --cwd %s locate -I .']
+    \ },
+  \ 'fallback': 'find %s -type f'
+  \ }
+" only search within local repo (root dir contains .git)
+" or make current dir root
+" in large repos: "touch .ctrlp" to specify root dir
+let g:ctrlp_root_markers = ['.ctrlp']
