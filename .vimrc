@@ -536,3 +536,9 @@ let g:ctrlp_user_command = {
 " or make current dir root
 " in large repos: "touch .ctrlp" to specify root dir
 let g:ctrlp_root_markers = ['.ctrlp']
+
+" https://github.com/nathanaelkane/vim-indent-guides
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_guide_size = 1
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=lightgrey
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey
