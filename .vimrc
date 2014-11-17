@@ -122,7 +122,8 @@ set ffs=unix,dos,mac
 " http://superuser.com/questions/364792/how-can-i-set-the-default-font-for-gvim-on-windows
 if has("gui_running")
     if has("win32") || has("win64")
-        set guifont=Consolas:h12
+        " set guifont=Consolas:h12
+        set guifont=DejaVu_Sans_Mono:h10:cANSI
         " http://vim.wikia.com/wiki/Copy,_cut_and_paste
         source $VIMRUNTIME/mswin.vim
     endif
