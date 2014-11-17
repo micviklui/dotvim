@@ -35,3 +35,19 @@ my vimfile
     ├── en.utf-8.add
     └── en.utf-8.add.spl
 ```
+
+Usage in Windows
+----------------
+
+    # important variables etc.
+    :version
+
+    # where to load .vimrc from
+    :echo $HOME
+    # where to load vim files from
+    :echo &runtimepath
+
+TODO
+----
+
+Adapt paths etc. for usage in windows.

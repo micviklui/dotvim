@@ -107,10 +107,10 @@ set background=dark
 
 " Set extra options when running in GUI mode
 if has("gui_running")
-set guioptions-=T
-set guioptions+=e
-set t_Co=256
-set guitablabel=%M\ %t
+    set guioptions-=T
+    set guioptions+=e
+    set t_Co=256
+    set guitablabel=%M\ %t
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
@@ -119,6 +119,14 @@ set encoding=utf8
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
+" http://superuser.com/questions/364792/how-can-i-set-the-default-font-for-gvim-on-windows
+if has("gui_running")
+    if has("win32") || has("win64")
+        set guifont=Consolas:h12
+        " http://vim.wikia.com/wiki/Copy,_cut_and_paste
+        source $VIMRUNTIME/mswin.vim
+    endif
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
