@@ -107,10 +107,10 @@ set background=dark
 
 " Set extra options when running in GUI mode
 if has("gui_running")
-set guioptions-=T
-set guioptions+=e
-set t_Co=256
-set guitablabel=%M\ %t
+    set guioptions-=T
+    set guioptions+=e
+    set t_Co=256
+    set guitablabel=%M\ %t
 endif
 
 " Set utf8 as standard encoding and en_US as the standard language
@@ -119,6 +119,15 @@ set encoding=utf8
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
 
+" http://superuser.com/questions/364792/how-can-i-set-the-default-font-for-gvim-on-windows
+if has("gui_running")
+    if has("win32") || has("win64")
+        " set guifont=Consolas:h12
+        set guifont=DejaVu_Sans_Mono:h10:cANSI
+        " http://vim.wikia.com/wiki/Copy,_cut_and_paste
+        source $VIMRUNTIME/mswin.vim
+    endif
+endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
@@ -144,7 +153,7 @@ set tabstop=2
 
 " Linebreak on tw characters
 set lbr
-set tw=90
+set tw=80
 
 set ai "Auto indent
 set si "Smart indent
@@ -224,7 +233,8 @@ autocmd BufReadPost *
 set viminfo^=%
 
 " ctags, jsctags
-" invoke 'ctags .' in root dir
+" invoke 'ctags -R .' in root dir
+" python -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"
 set tags=./tags,tags;/
 " http://andrewradev.com/2011/06/08/vim-and-ctags/
 autocmd BufWritePost *
@@ -280,6 +290,9 @@ endfunc
 
 autocmd BufWrite *.py :call DeleteTrailingWS()
 autocmd BufWrite *.coffee :call DeleteTrailingWS()
+
+" http://vim.wikia.com/wiki/Search_and_replace_the_word_under_the_cursor
+:nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -339,6 +352,8 @@ map <leader>q :e ~/buffer<cr>
 " Toggle paste mode on and off
 map <leader>pp :setlocal paste!<cr>
 
+" copy and paste with mouse and <C-c> and <C-v>
+:vmap <C-c> "+y
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -446,7 +461,14 @@ let g:autopep8_disable_show_diff=1
 " https://github.com/klen/python-mode.git
 " https://github.com/davidhalter/jedi-vim (alternative to python-mode)
 let g:jedi#use_tabs_not_buffers = 0
-let g:jedi#use_splits_not_buffers = "left"
+let g:jedi#use_splits_not_buffers = "top"
+"let g:jedi#goto_assignments_command = "<leader>g"
+"let g:jedi#goto_definitions_command = "<leader>d"
+"let g:jedi#documentation_command = "K"
+"let g:jedi#usages_command = "<leader>n"
+"let g:jedi#completions_command = "<C-Space>"
+"let g:jedi#rename_command = "<leader>r"
+"let g:jedi#show_call_signatures = "1"
 " https://github.com/ervandew/supertab
 
 " https://github.com/rkulla/pydiction.git
@@ -458,6 +480,15 @@ let g:pydiction_menu_height = 3
 " syntastic - syntax checker for multiple languages
 " https://github.com/scrooloose/syntastic
 " pip install --upgrade pyflakes
+function! ToggleErrors()
+    if empty(filter(tabpagebuflist(), 'getbufvar(v:val, "&buftype") is# "quickfix"'))
+         " No location/quickfix list shown, open syntastic error location panel
+         Errors
+    else
+        lclose
+    endif
+endfunction
+nnoremap <silent> <C-e> :<C-u>call ToggleErrors()<CR>
 
 " git
 " https://github.com/tpope/vim-fugitive
@@ -474,7 +505,7 @@ let g:pydiction_menu_height = 3
 " php.vim
 " http://www.vim.org/scripts/script.php?script_id=604
 
-" yankring
+" yankring (conflicts with another plugin)
 " http://www.vim.org/scripts/script.php?script_id=1234
 " https://github.com/vim-scripts/YankRing.vim
 "nnoremap <silent> <F3> :YRShow<cr>
@@ -482,3 +513,41 @@ let g:pydiction_menu_height = 3
 
 " powerline
 " https://github.com/Lokaltog/powerline
+
+" vim-airline (alternative to powerline)
+" https://github.com/bling/vim-airline
+let g:airline#extensions#tabline#enabled = 1
+" vim bufferline
+" https://github.com/bling/vim-bufferline
+
+" ctrlp (fuzzy file, buffer, mru, tag, ... finder)
+" https://github.com/kien/ctrlp.vim
+
+" vim tmuxline
+" https://github.com/edkolev/tmuxline.vim
+
+" vim-rst-tables
+" https://github.com/nvie/vim-rst-tables
+" <leader><leader>c "reformat table
+" <leader><leader>f "reflow table
+
+" vim ctrlp
+" https://github.com/kien/ctrlp.vim.git
+" only list checked-in files
+let g:ctrlp_user_command = {
+  \ 'types': {
+    \ 1: ['.git', 'cd %s && git ls-files --cached --exclude-standard --others'],
+    \ 2: ['.hg', 'hg --cwd %s locate -I .']
+    \ },
+  \ 'fallback': 'find %s -type f'
+  \ }
+" only search within local repo (root dir contains .git)
+" or make current dir root
+" in large repos: "touch .ctrlp" to specify root dir
+let g:ctrlp_root_markers = ['.ctrlp']
+
+" https://github.com/nathanaelkane/vim-indent-guides
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_guide_size = 1
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=lightgrey
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey
