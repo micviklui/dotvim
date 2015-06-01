@@ -3,11 +3,8 @@ dotvim
 
 my vimfile
 
-vim as a python IDE - Martin Brochhaus
---------------------------------------
-
-requirements for an IDE
-+++++++++++++++++++++++
+Requirements for an IDE
+-----------------------
 
 * fast access to all files
 * color scheme
@@ -18,23 +15,21 @@ requirements for an IDE
 * refactoring
 * debugging
 
-install vim
-+++++++++++
+Install vim
+-----------
 
+from source
+```
 hg clone https://vim.googlecode.com/hg/ vim
-
 cd vim/src
 ./configure --enable-pythoninterp --with-features=huge --prefix=...
 make && ...
 ...
+```
 
-plugins
-+++++++
-* vim-powerline
-* python-mode
-* ctrlp.vim
-* python_editing
-* others:
+Plugins
+-------
+
 ```
 ~/.vim> tree -L 2
 .
@@ -44,9 +39,12 @@ plugins
 ├── bundle
 │   ├── ctrlp.vim
 │   ├── jedi-vim
+│   ├── jshint2.vim
 │   ├── nerdtree
+│   ├── pydiction
 │   ├── syntastic
 │   ├── tagbar
+│   ├── tern_for_vim
 │   ├── vim-airline
 │   ├── vim-autopep8
 │   ├── vim-autotag
@@ -63,6 +61,8 @@ plugins
 ├── plugin
 │   ├── cecutil.vim
 │   └── DrawItPlugin.vim
+├── syntax
+│   └── php.vim
 └── spell
     ├── en.utf-8.add
     └── en.utf-8.add.spl
@@ -78,6 +78,13 @@ Usage in Windows
     :echo $HOME
     # where to load vim files from
     :echo &runtimepath
+
+
+Resources
+---------
+
+* [vim as a python IDE - Martin Brochhaus](https://www.youtube.com/watch?v=YhqsjUUHj6g)
+
 
 TODO
 ----
