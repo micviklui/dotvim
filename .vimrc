@@ -496,6 +496,10 @@ nnoremap <silent> <C-e> :<C-u>call ToggleErrors()<CR>
 " javascript
 " https://github.com/Shutnik/jshint2.vim
 " https://github.com/marijnh/tern_for_vim
+" Syntastic
+let g:syntastic_check_on_open=1
+let g:syntastic_javascript_checkers = ['jshint']
+" let g:syntastic_jshint_exec='/home/alex/nvm/v0.8.8/bin/jshint'
 
 " tagbar
 " http://www.vim.org/scripts/script.php?script_id=3465
@@ -517,22 +521,23 @@ nnoremap <silent> <C-e> :<C-u>call ToggleErrors()<CR>
 " vim-airline (alternative to powerline)
 " https://github.com/bling/vim-airline
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+
 " vim bufferline
 " https://github.com/bling/vim-bufferline
 
-" ctrlp (fuzzy file, buffer, mru, tag, ... finder)
-" https://github.com/kien/ctrlp.vim
-
-" vim tmuxline
-" https://github.com/edkolev/tmuxline.vim
-
-" vim-rst-tables
-" https://github.com/nvie/vim-rst-tables
-" <leader><leader>c "reformat table
-" <leader><leader>f "reflow table
-
-" vim ctrlp
+" Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
 " https://github.com/kien/ctrlp.vim.git
+let g:ctrlp_map = '<c-p>'
+" Use a leader instead of the actual named binding
+"nmap <leader>p :CtrlP<cr>
+" https://joshldavis.com/2014/04/05/vim-tab-madness-buffers-vs-tabs/
+" default ignores
+"let g:ctrlp_custom_ignore = {
+"  \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
+"  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
+"\}
 " only list checked-in files
 let g:ctrlp_user_command = {
   \ 'types': {
@@ -545,9 +550,29 @@ let g:ctrlp_user_command = {
 " or make current dir root
 " in large repos: "touch .ctrlp" to specify root dir
 let g:ctrlp_root_markers = ['.ctrlp']
+" Use the nearest .git directory as the cwd
+" This makes a lot of sense if you are working on a project that is in version
+" control. It also supports works with .svn, .hg, .bzr.
+let g:ctrlp_working_path_mode = 'r'
+" Easy bindings for its various modes
+"nmap <leader>bb :CtrlPBuffer<cr>
+"nmap <leader>bm :CtrlPMixed<cr>
+"nmap <leader>bs :CtrlPMRU<cr>
+
+" Vim plugin to list, select and switch between buffers.
+" https://github.com/jeetsukumaran/vim-buffergator
+
+" vim tmuxline
+" https://github.com/edkolev/tmuxline.vim
+
+" vim-rst-tables
+" https://github.com/nvie/vim-rst-tables
+" <leader><leader>c "reformat table
+" <leader><leader>f "reflow table
 
 " https://github.com/nathanaelkane/vim-indent-guides
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_guide_size = 1
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=lightgrey
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey
+
