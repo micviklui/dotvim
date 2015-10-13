@@ -196,23 +196,22 @@ map gd :Bclose<cr>
 "nnoremap gn :tabnew
 
 " Close the current buffer
-map <leader>bd :Bclose<cr>
+"map <leader>bd :Bclose<cr>
 
 " Close all the buffers
-map <leader>ba :1,1000 bd!<cr>
+"map <leader>ba :1,1000 bd!<cr>
 
 " Useful mappings for managing tabs
-map <leader>tn :tabnew<cr>
-map <leader>to :tabonly<cr>
+map <leader>tn :tabnext<cr>
+map <leader>tp :tabprevious<cr>
 map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
-map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+"map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 
 " Switch CWD to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
+"map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " automatically change window's cwd to file's dir
 set autochdir
@@ -269,17 +268,17 @@ nnoremap JJJJ <Nop>
 "map 0 ^
 
 " Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
-nmap <M-j> mz:m+<cr>`z
-nmap <M-k> mz:m-2<cr>`z
-vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
+"nmap <M-j> mz:m+<cr>`z
+"nmap <M-k> mz:m-2<cr>`z
+"vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
+"vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
 
-if has("mac") || has("macunix")
-nmap <D-j> <M-j>
-nmap <D-k> <M-k>
-vmap <D-j> <M-j>
-vmap <D-k> <M-k>
-endif
+"if has("mac") || has("macunix")
+"nmap <D-j> <M-j>
+"nmap <D-k> <M-k>
+"vmap <D-j> <M-j>
+"vmap <D-k> <M-k>
+"endif
 
 " Delete trailing white space on save, useful for Python and CoffeeScript ;)
 func! DeleteTrailingWS()
@@ -299,13 +298,13 @@ autocmd BufWrite *.coffee :call DeleteTrailingWS()
 " => vimgrep searching and cope displaying
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " When you press gv you vimgrep after the selected text
-vnoremap <silent> gv :call VisualSelection('gv')<CR>
+"vnoremap <silent> gv :call VisualSelection('gv')<CR>
 
 " Open vimgrep and put the cursor in the right position
-map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
+"map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
 
 " Vimgreps in the current file
-map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
+"map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
 
 " When you press <leader>r you can search and replace the selected text
 vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
@@ -321,10 +320,10 @@ vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
 " To go to the previous search results do:
 "   <leader>p
 "
-map <leader>cc :botright cope<cr>
-map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
-map <leader>n :cn<cr>
-map <leader>p :cp<cr>
+"map <leader>cc :botright cope<cr>
+"map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
+"map <leader>n :cn<cr>
+"map <leader>p :cp<cr>
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -347,10 +346,10 @@ map <leader>s? z=
 noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 
 " Quickly open a buffer for scribble
-map <leader>q :e ~/buffer<cr>
+"map <leader>q :e ~/buffer<cr>
 
 " Toggle paste mode on and off
-map <leader>pp :setlocal paste!<cr>
+"map <leader>pp :setlocal paste!<cr>
 
 " copy and paste with mouse and <C-c> and <C-v>
 :vmap <C-c> "+y
@@ -417,12 +416,15 @@ function! <SID>BufcloseCloseIt()
 endfunction
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" => Pathogen package manager
+" => package manager and packages/plugins
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" https://github.com/gmarik/Vundle.vim (alternative to pathogen)
+" vundle, alternative to pathogen
+" https://github.com/gmarik/Vundle.vim
 
-" Now any plugins you wish to install can be extracted to a subdirectory under ~/.vim/bundle, and they will be added to the 'runtimepath'. 
-let g:pathogen_disabled = ['yankring']
+" pathogen
+" https://github.com/tpope/vim-pathogen 
+" extract plugins to install to subdirectory under ~/.vim/bundle
+let g:pathogen_disabled = ['yankring', 'jedi']
 execute pathogen#infect()
 
 " NERDTree
@@ -434,22 +436,19 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTree
 let NERDTreeIgnore=['\~$', '\.py\(c\|o\)$', '\.\(git\|svn\)$', '^\.\(DS_Store\|tags\)$']
 let NERDTreeShowHidden=1
 
+" vim-autotag
 " automatically update tags on saving
 " https://github.com/craigemery/vim-autotag
 
-" calendar (with google calendar connection)
+" calendar.vim
+" with google calendar connection
 " https://github.com/itchyny/calendar.vim
-let g:calendar_first_day = "monday"
-let g:calendar_google_calendar = 5
-let g:calendar_google_task = 1
+"let g:calendar_first_day = "monday"
+"let g:calendar_google_calendar = 5
+"let g:calendar_google_task = 1
 
-" multiuser vim
+" vim-multiuser
 " https://github.com/emgram769/vim-multiuser
-
-" fuzzy logic autocomplete
-" https://github.com/Valloric/YouCompleteMe
-
-" python 
 
 " python enforce pep8
 " https://github.com/tell-k/vim-autopep8
@@ -457,9 +456,10 @@ let g:autopep8_disable_show_diff=1
 "autocmd FileType python map <buffer> <F3> :call Autopep8()<CR>
 
 " https://github.com/fs111/pydoc.vim
-
 " https://github.com/klen/python-mode.git
-" https://github.com/davidhalter/jedi-vim (alternative to python-mode)
+" jedi-vim
+" alternative to python-mode
+" https://github.com/davidhalter/jedi-vim
 let g:jedi#use_tabs_not_buffers = 0
 let g:jedi#use_splits_not_buffers = "top"
 "let g:jedi#goto_assignments_command = "<leader>g"
@@ -469,15 +469,23 @@ let g:jedi#use_splits_not_buffers = "top"
 "let g:jedi#completions_command = "<C-Space>"
 "let g:jedi#rename_command = "<leader>r"
 "let g:jedi#show_call_signatures = "1"
+" disable jedi-vim in favor of youcompleteme
+let g:jedi#completions_enabled = 0
+" YouCompleteMe
+" fuzzy logic autocomplete for C, python
+" https://github.com/Valloric/YouCompleteMe
+
+" supertab
+" use tab for autocomplete
 " https://github.com/ervandew/supertab
 
+" pydiction
 " https://github.com/rkulla/pydiction.git
 let g:pydiction_location = '~/.vim/bundle/pydiction/complete-dict'
 let g:pydiction_menu_height = 3
 
-" python 
-
-" syntastic - syntax checker for multiple languages
+" syntastic
+" syntax checker for multiple languages
 " https://github.com/scrooloose/syntastic
 " pip install --upgrade pyflakes
 function! ToggleErrors()
@@ -493,23 +501,28 @@ nnoremap <silent> <C-e> :<C-u>call ToggleErrors()<CR>
 " git
 " https://github.com/tpope/vim-fugitive
 
-" javascript
+" jshint2
+" javascript linter
 " https://github.com/Shutnik/jshint2.vim
+" javascript code analysis
 " https://github.com/marijnh/tern_for_vim
-" Syntastic
+
+" syntastic for javascript
 let g:syntastic_check_on_open=1
 let g:syntastic_javascript_checkers = ['jshint']
 " let g:syntastic_jshint_exec='/home/alex/nvm/v0.8.8/bin/jshint'
 
 " tagbar
 " http://www.vim.org/scripts/script.php?script_id=3465
-" taglist.vim alternative(!) to tagbar
+" taglist.vim
+" alternative(!) to tagbar
 " http://www.vim.org/scripts/script.php?script_id=273
 
 " php.vim
 " http://www.vim.org/scripts/script.php?script_id=604
 
-" yankring (conflicts with another plugin)
+" yankring
+" conflicts with another plugin
 " http://www.vim.org/scripts/script.php?script_id=1234
 " https://github.com/vim-scripts/YankRing.vim
 "nnoremap <silent> <F3> :YRShow<cr>
@@ -517,16 +530,17 @@ let g:syntastic_javascript_checkers = ['jshint']
 
 " powerline
 " https://github.com/Lokaltog/powerline
-
-" vim-airline (alternative to powerline)
+" vim-airline
+" alternative to powerline
 " https://github.com/bling/vim-airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 
-" vim bufferline
+" vim-bufferline
 " https://github.com/bling/vim-bufferline
 
+" ctrlp.vim
 " Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
 " https://github.com/kien/ctrlp.vim.git
 let g:ctrlp_map = '<c-p>'
@@ -559,10 +573,11 @@ let g:ctrlp_working_path_mode = 'r'
 "nmap <leader>bm :CtrlPMixed<cr>
 "nmap <leader>bs :CtrlPMRU<cr>
 
-" Vim plugin to list, select and switch between buffers.
+" vim-buffergator
+" list, select and switch between buffers.
 " https://github.com/jeetsukumaran/vim-buffergator
 
-" vim tmuxline
+" tmuxline.vim
 " https://github.com/edkolev/tmuxline.vim
 
 " vim-rst-tables
@@ -570,6 +585,7 @@ let g:ctrlp_working_path_mode = 'r'
 " <leader><leader>c "reformat table
 " <leader><leader>f "reflow table
 
+" vim-indent-guides
 " https://github.com/nathanaelkane/vim-indent-guides
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_guide_size = 1
