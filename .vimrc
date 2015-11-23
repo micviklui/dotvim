@@ -172,6 +172,11 @@ vnoremap <silent> # :call VisualSelection('b')<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" https://joshldavis.com/2014/04/05/vim-tab-madness-buffers-vs-tabs/
+" buffer   ... in-memory text of a file
+" window   ... viewport on a buffer
+" tab page ... collection of windows
+
 " Treat long lines as break lines (useful when moving around in them)
 map j gj
 map k gk
@@ -202,16 +207,20 @@ map gd :Bclose<cr>
 "map <leader>ba :1,1000 bd!<cr>
 
 " Useful mappings for managing tabs
+" :tabnew
+" :tabs
 map <leader>tn :tabnext<cr>
 map <leader>tp :tabprevious<cr>
-map <leader>tc :tabclose<cr>
+" map <leader>to :tabonly<cr>
+" map <leader>tc :tabclose<cr>
+" map <leader>tm :tabmove
 
 " Opens a new tab with the current buffer's path
 " Super useful when editing files in the same directory
-"map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 
 " Switch CWD to the directory of the open buffer
-"map <leader>cd :cd %:p:h<cr>:pwd<cr>
+map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " automatically change window's cwd to file's dir
 set autochdir
@@ -429,7 +438,7 @@ execute pathogen#infect()
 
 " NERDTree
 " https://github.com/scrooloose/nerdtree
-autocmd vimenter * NERDTree
+" autocmd vimenter * NERDTree
 autocmd vimenter * if !argc() | NERDTree | endif
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
