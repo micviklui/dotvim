@@ -159,6 +159,7 @@ set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
 
+"autocmd FileType cpp setlocal shiftwidth=2 tabstop=2
 
 """"""""""""""""""""""""""""""
 " => Visual mode related
@@ -582,6 +583,7 @@ let g:ctrlp_working_path_mode = 'r'
 "nmap <leader>bb :CtrlPBuffer<cr>
 "nmap <leader>bm :CtrlPMixed<cr>
 "nmap <leader>bs :CtrlPMRU<cr>
+nnoremap <leader>. :CtrlPTag<cr>
 
 " vim-buffergator
 " list, select and switch between buffers.
