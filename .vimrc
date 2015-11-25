@@ -523,6 +523,7 @@ let g:syntastic_javascript_checkers = ['jshint']
 
 " tagbar
 " http://www.vim.org/scripts/script.php?script_id=3465
+" https://github.com/majutsushi/tagbar.git
 " taglist.vim
 " alternative(!) to tagbar
 " http://www.vim.org/scripts/script.php?script_id=273
