@@ -59,6 +59,7 @@ Plugins
 ├── indent
 │   └── python.vim
 ├── plugin
+│   ├── BufOnly.vim
 │   ├── cecutil.vim
 │   └── DrawItPlugin.vim
 ├── syntax

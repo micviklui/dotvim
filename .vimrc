@@ -591,6 +591,9 @@ nnoremap <leader>. :CtrlPTag<cr>
 " list, select and switch between buffers.
 " https://github.com/jeetsukumaran/vim-buffergator
 
+" helper to close all (multiple) buffers
+" http://www.vim.org/scripts/script.php?script_id=1071
+
 " tmuxline.vim
 " https://github.com/edkolev/tmuxline.vim
 
