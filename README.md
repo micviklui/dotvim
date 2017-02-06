@@ -37,6 +37,7 @@ Plugins
 │   ├── DrawIt.vim
 │   └── pathogen.vim
 ├── bundle
+│   ├── YouCompleteMe
 │   ├── ctrlp.vim
 │   ├── jedi-vim
 │   ├── jshint2.vim
@@ -48,8 +49,10 @@ Plugins
 │   ├── vim-airline
 │   ├── vim-autopep8
 │   ├── vim-autotag
+│   ├── vim-buffergator
 │   ├── vim-bufferline
-│   └── vim-fugitive
+│   ├── vim-fugitive
+│   └── web-indent
 ├── doc
 │   ├── DrawIt.txt
 │   └── tags
