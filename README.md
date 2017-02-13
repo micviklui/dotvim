@@ -41,6 +41,7 @@ Plugins
 │   ├── ctrlp.vim
 │   ├── jedi-vim
 │   ├── jshint2.vim
+│   ├── linediff.vim
 │   ├── nerdtree
 │   ├── pydiction
 │   ├── syntastic
@@ -57,6 +58,8 @@ Plugins
 │   ├── DrawIt.txt
 │   └── tags
 ├── ftplugin
+│   ├── c.vim
+│   ├── pep8.py
 │   ├── python.vim
 │   └── rst_tables.vim
 ├── indent

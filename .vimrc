@@ -619,3 +619,8 @@ let g:indent_guides_guide_size = 1
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=lightgrey
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey
 
+
+" BufOnly
+" https://github.com/vim-scripts/BufOnly.vim.git
+" (mirror of http://www.vim.org/scripts/script.php?script_id=1071)
+" :BufOnly unload all buffers but the current one
