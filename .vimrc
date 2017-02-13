@@ -487,6 +487,16 @@ let g:jedi#completions_enabled = 0
 " fuzzy logic autocomplete for C, python
 " https://github.com/Valloric/YouCompleteMe
 
+" vim-clang-format
+" Vim plugin for clang-format, a formatter for C, C++ and Obj-C code
+"let g:clang_format#detect_style_file = "1"
+"let g:clang_format#auto_format = "1"
+"let g:clang_format#auto_formatexpr = "1"
+autocmd FileType c,cpp,objc nnoremap <buffer><Leader>cf :<C-u>ClangFormat<CR>
+autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
+"au FileType c ClangFormatAutoEnable
+autocmd FileType c,cpp,objc vnoremap <buffer>= :ClangFormat<CR>
+
 " supertab
 " use tab for autocomplete
 " https://github.com/ervandew/supertab
