@@ -475,17 +475,17 @@ let g:autopep8_disable_show_diff=1
 " jedi-vim
 " alternative to python-mode
 " https://github.com/davidhalter/jedi-vim
-let g:jedi#use_tabs_not_buffers = 0
-let g:jedi#use_splits_not_buffers = "top"
-"let g:jedi#goto_assignments_command = "<leader>g"
-"let g:jedi#goto_definitions_command = "<leader>d"
-"let g:jedi#documentation_command = "K"
-"let g:jedi#usages_command = "<leader>n"
-"let g:jedi#completions_command = "<C-Space>"
-"let g:jedi#rename_command = "<leader>r"
-"let g:jedi#show_call_signatures = "1"
-" disable jedi-vim in favor of youcompleteme
-let g:jedi#completions_enabled = 0
+"let g:jedi#use_tabs_not_buffers = 0
+"let g:jedi#use_splits_not_buffers = "top"
+""let g:jedi#goto_assignments_command = "<leader>g"
+""let g:jedi#goto_definitions_command = "<leader>d"
+""let g:jedi#documentation_command = "K"
+""let g:jedi#usages_command = "<leader>n"
+""let g:jedi#completions_command = "<C-Space>"
+""let g:jedi#rename_command = "<leader>r"
+""let g:jedi#show_call_signatures = "1"
+"" disable jedi-vim in favor of youcompleteme
+"let g:jedi#completions_enabled = 0
 " YouCompleteMe
 " fuzzy logic autocomplete for C, python
 " https://github.com/Valloric/YouCompleteMe
@@ -559,9 +559,11 @@ let g:syntastic_javascript_checkers = ['jshint']
 " vim-airline
 " alternative to powerline
 " https://github.com/bling/vim-airline
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#left_sep = ' '
-let g:airline#extensions#tabline#left_alt_sep = '|'
+"let g:airline#extensions#tabline#enabled = 1
+"let g:airline#extensions#tabline#left_sep = ' '
+"let g:airline#extensions#tabline#left_alt_sep = '|'
+""let g:airline_theme='dark'
+let g:airline_theme = 'powerlineish'
 
 " vim-bufferline
 " https://github.com/bling/vim-bufferline
