@@ -34,29 +34,21 @@ Plugins
 ~/.vim> tree -L 2
 .
 ├── autoload
-│   ├── DrawIt.vim
 │   └── pathogen.vim
 ├── bundle
 │   ├── YouCompleteMe
 │   ├── ctrlp.vim
-│   ├── jedi-vim
-│   ├── jshint2.vim
 │   ├── linediff.vim
 │   ├── nerdtree
-│   ├── pydiction
 │   ├── syntastic
 │   ├── tagbar
-│   ├── tern_for_vim
 │   ├── vim-airline
+│   ├── vim-airline-themes
 │   ├── vim-autopep8
 │   ├── vim-autotag
 │   ├── vim-buffergator
-│   ├── vim-bufferline
-│   ├── vim-fugitive
-│   └── web-indent
+│   └── vim-fugitive
 ├── doc
-│   ├── DrawIt.txt
-│   └── tags
 ├── ftplugin
 │   ├── c.vim
 │   ├── pep8.py
@@ -65,14 +57,10 @@ Plugins
 ├── indent
 │   └── python.vim
 ├── plugin
-│   ├── BufOnly.vim
-│   ├── cecutil.vim
-│   └── DrawItPlugin.vim
-├── syntax
-│   └── php.vim
-└── spell
-    ├── en.utf-8.add
-    └── en.utf-8.add.spl
+├── spell
+│   ├── en.utf-8.add
+│   └── en.utf-8.add.spl
+└── syntax
 ```
 
 Usage in Windows
