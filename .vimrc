@@ -249,7 +249,7 @@ set viminfo^=%
 " ctags, jsctags
 " invoke 'ctags -R .' in root dir
 " python -c "from distutils.sysconfig import get_python_lib; print get_python_lib()"
-set tags=./tags,tags;/
+set tags=./tags;$HOME
 " http://andrewradev.com/2011/06/08/vim-and-ctags/
 autocmd BufWritePost *
             \ if filereadable('tags') |
