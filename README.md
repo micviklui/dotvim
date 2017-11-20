@@ -80,9 +80,9 @@ Usage in Windows
     # important variables etc.
     :version
 
-    # where to load .vimrc from
+    # where to load `_vimrc` (`.vimrc`) from
     :echo $HOME
-    # where to load vim files from
+    # where to load `vimfiles` (`.vim`) from
     :echo &runtimepath
 
 
