@@ -63,6 +63,17 @@ Plugins
 └── syntax
 ```
 
+https://github.com/Valloric/YouCompleteMe
+https://github.com/kien/ctrlp.vim.git
+https://github.com/scrooloose/nerdtree
+https://github.com/scrooloose/syntastic
+https://github.com/bling/vim-airline
+https://github.com/vim-airline/vim-airline-themes
+https://github.com/tell-k/vim-autopep8
+https://github.com/craigemery/vim-autotag
+https://github.com/jeetsukumaran/vim-buffergator
+https://github.com/tpope/vim-fugitive
+
 Usage in Windows
 ----------------
 
