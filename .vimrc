@@ -29,7 +29,7 @@ let g:mapleader = ","
 nmap <leader>w :w!<cr>
 
 " Necesary for lots of cool vim things
-" set nocompatible
+set nocompatible
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -369,6 +369,8 @@ noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
 " copy and paste with mouse and <C-c> and <C-v>
 :vmap <C-c> "+y
 
+" https://unix.stackexchange.com/questions/196098/copy-paste-in-xfce4-terminal-adds-0-and-1
+set t_BE=
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
@@ -435,63 +437,45 @@ endfunction
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " vundle, alternative to pathogen
 " https://github.com/gmarik/Vundle.vim
+set nocompatible  " required by vundle
+filetype off  " required by vundle
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-" pathogen
-" https://github.com/tpope/vim-pathogen 
-" extract plugins to install to subdirectory under ~/.vim/bundle
-let g:pathogen_disabled = ['yankring', 'jedi']
-execute pathogen#infect()
+" Vundle
+" let Vundle manage Vundle, required by vundle
+Plugin 'VundleVim/Vundle.vim'
 
 " NERDTree
 " https://github.com/scrooloose/nerdtree
+Plugin 'scrooloose/nerdtree'
 " autocmd vimenter * NERDTree
 autocmd vimenter * if !argc() | NERDTree | endif
 map <C-n> :NERDTreeToggle<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
-let NERDTreeIgnore=['\~$', '\.py\(c\|o\)$', '\.\(git\|svn\)$', '^\.\(DS_Store\|tags\)$']
+let NERDTreeIgnore=['\~$', '\.py\(c\|o\)$', '\.\(git\|svn\)$', '^\.\(DS_Store\|tags\)$', '^\.cache$', '^\.ipynb_checkpoints$', '^\.pytest_cache$', '.*egg-info$']
 let NERDTreeShowHidden=1
 
 " vim-autotag
 " automatically update tags on saving
 " https://github.com/craigemery/vim-autotag
-
-" calendar.vim
-" with google calendar connection
-" https://github.com/itchyny/calendar.vim
-"let g:calendar_first_day = "monday"
-"let g:calendar_google_calendar = 5
-"let g:calendar_google_task = 1
-
-" vim-multiuser
-" https://github.com/emgram769/vim-multiuser
+Plugin 'craigemery/vim-autotag'
 
 " python enforce pep8
 " https://github.com/tell-k/vim-autopep8
+Plugin 'tell-k/vim-autopep8'
 let g:autopep8_disable_show_diff=1
 "autocmd FileType python map <buffer> <F3> :call Autopep8()<CR>
 
-" https://github.com/fs111/pydoc.vim
-" https://github.com/klen/python-mode.git
-" jedi-vim
-" alternative to python-mode
-" https://github.com/davidhalter/jedi-vim
-"let g:jedi#use_tabs_not_buffers = 0
-"let g:jedi#use_splits_not_buffers = "top"
-""let g:jedi#goto_assignments_command = "<leader>g"
-""let g:jedi#goto_definitions_command = "<leader>d"
-""let g:jedi#documentation_command = "K"
-""let g:jedi#usages_command = "<leader>n"
-""let g:jedi#completions_command = "<C-Space>"
-""let g:jedi#rename_command = "<leader>r"
-""let g:jedi#show_call_signatures = "1"
-"" disable jedi-vim in favor of youcompleteme
-"let g:jedi#completions_enabled = 0
 " YouCompleteMe
 " fuzzy logic autocomplete for C, python
 " https://github.com/Valloric/YouCompleteMe
+Plugin 'Valloric/YouCompleteMe'
 
 " vim-clang-format
 " Vim plugin for clang-format, a formatter for C, C++ and Obj-C code
+Plugin 'rhysd/vim-clang-format'
+let g:clang_format#command='clang-format-6.0'
 "let g:clang_format#detect_style_file = "1"
 "let g:clang_format#auto_format = "1"
 "let g:clang_format#auto_formatexpr = "1"
@@ -500,19 +484,11 @@ autocmd FileType c,cpp,objc vnoremap <buffer><Leader>cf :ClangFormat<CR>
 "au FileType c ClangFormatAutoEnable
 autocmd FileType c,cpp,objc vnoremap <buffer>= :ClangFormat<CR>
 
-" supertab
-" use tab for autocomplete
-" https://github.com/ervandew/supertab
-
-" pydiction
-" https://github.com/rkulla/pydiction.git
-let g:pydiction_location = '~/.vim/bundle/pydiction/complete-dict'
-let g:pydiction_menu_height = 3
-
 " syntastic
 " syntax checker for multiple languages
 " https://github.com/scrooloose/syntastic
 " pip install --upgrade pyflakes
+Plugin 'scrooloose/syntastic'
 function! ToggleErrors()
     if empty(filter(tabpagebuflist(), 'getbufvar(v:val, "&buftype") is# "quickfix"'))
          " No location/quickfix list shown, open syntastic error location panel
@@ -522,20 +498,24 @@ function! ToggleErrors()
     endif
 endfunction
 nnoremap <silent> <C-e> :<C-u>call ToggleErrors()<CR>
+let g:syntastic_check_on_open=0
+let g:syntastic_check_on_wq = 1
+" syntastic for javascript
+"let g:syntastic_javascript_checkers = ['jshint']
+
+" alternative to syntastic
+" https://github.com/w0rp/ale
+"Plugin 'w0rp/ale'
 
 " git
 " https://github.com/tpope/vim-fugitive
+Plugin 'tpope/vim-fugitive'
 
 " jshint2
 " javascript linter
 " https://github.com/Shutnik/jshint2.vim
 " javascript code analysis
 " https://github.com/marijnh/tern_for_vim
-
-" syntastic for javascript
-let g:syntastic_check_on_open=1
-let g:syntastic_javascript_checkers = ['jshint']
-" let g:syntastic_jshint_exec='/home/alex/nvm/v0.8.8/bin/jshint'
 
 " tagbar
 " http://www.vim.org/scripts/script.php?script_id=3465
@@ -547,85 +527,63 @@ let g:syntastic_javascript_checkers = ['jshint']
 " php.vim
 " http://www.vim.org/scripts/script.php?script_id=604
 
-" yankring
-" conflicts with another plugin
-" http://www.vim.org/scripts/script.php?script_id=1234
-" https://github.com/vim-scripts/YankRing.vim
-"nnoremap <silent> <F3> :YRShow<cr>
-"inoremap <silent> <F3> <ESC>:YRShow<cr>
-
-" powerline
-" https://github.com/Lokaltog/powerline
 " vim-airline
-" alternative to powerline
 " https://github.com/bling/vim-airline
+Plugin 'bling/vim-airline'
 "let g:airline#extensions#tabline#enabled = 1
 "let g:airline#extensions#tabline#left_sep = ' '
 "let g:airline#extensions#tabline#left_alt_sep = '|'
 ""let g:airline_theme='dark'
 let g:airline_theme = 'powerlineish'
 
-" vim-bufferline
-" https://github.com/bling/vim-bufferline
-
-" ctrlp.vim
-" Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
-" https://github.com/kien/ctrlp.vim.git
-let g:ctrlp_map = '<c-p>'
-" Use a leader instead of the actual named binding
-"nmap <leader>p :CtrlP<cr>
-" https://joshldavis.com/2014/04/05/vim-tab-madness-buffers-vs-tabs/
-" default ignores
-"let g:ctrlp_custom_ignore = {
-"  \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
-"  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
-"\}
-" only list checked-in files
-let g:ctrlp_user_command = {
-  \ 'types': {
-    \ 1: ['.git', 'cd %s && git ls-files --cached --exclude-standard --others'],
-    \ 2: ['.hg', 'hg --cwd %s locate -I .']
-    \ },
-  \ 'fallback': 'find %s -type f'
-  \ }
-" only search within local repo (root dir contains .git)
-" or make current dir root
-" in large repos: "touch .ctrlp" to specify root dir
-let g:ctrlp_root_markers = ['.ctrlp']
-" Use the nearest .git directory as the cwd
-" This makes a lot of sense if you are working on a project that is in version
-" control. It also supports works with .svn, .hg, .bzr.
-let g:ctrlp_working_path_mode = 'r'
-" Easy bindings for its various modes
-"nmap <leader>bb :CtrlPBuffer<cr>
-"nmap <leader>bm :CtrlPMixed<cr>
-"nmap <leader>bs :CtrlPMRU<cr>
-nnoremap <leader>. :CtrlPTag<cr>
+"" ctrlp.vim
+"" Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
+"" https://github.com/kien/ctrlp.vim.git
+"Plugin 'kien/ctrlp.vim.git'
+"let g:ctrlp_map = '<c-p>'
+"" Use a leader instead of the actual named binding
+""nmap <leader>p :CtrlP<cr>
+"" https://joshldavis.com/2014/04/05/vim-tab-madness-buffers-vs-tabs/
+"" default ignores
+""let g:ctrlp_custom_ignore = {
+""  \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
+""  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
+""\}
+"" only list checked-in files
+"let g:ctrlp_user_command = {
+"  \ 'types': {
+"    \ 1: ['.git', 'cd %s && git ls-files --cached --exclude-standard --others'],
+"    \ 2: ['.hg', 'hg --cwd %s locate -I .']
+"    \ },
+"  \ 'fallback': 'find %s -type f'
+"  \ }
+"" only search within local repo (root dir contains .git)
+"" or make current dir root
+"" in large repos: "touch .ctrlp" to specify root dir
+"let g:ctrlp_root_markers = ['.ctrlp']
+"" Use the nearest .git directory as the cwd
+"" This makes a lot of sense if you are working on a project that is in version
+"" control. It also supports works with .svn, .hg, .bzr.
+"let g:ctrlp_working_path_mode = 'r'
+"" Easy bindings for its various modes
+""nmap <leader>bb :CtrlPBuffer<cr>
+""nmap <leader>bm :CtrlPMixed<cr>
+""nmap <leader>bs :CtrlPMRU<cr>
+"nnoremap <leader>. :CtrlPTag<cr>
 
 " vim-buffergator
 " list, select and switch between buffers.
 " https://github.com/jeetsukumaran/vim-buffergator
+Plugin 'jeetsukumaran/vim-buffergator'
 
-" helper to close all (multiple) buffers
-" http://www.vim.org/scripts/script.php?script_id=1071
+"" vim-indent-guides
+"" https://github.com/nathanaelkane/vim-indent-guides
+"Plugin 'nathanaelkane/vim-indent-guides'
+"let g:indent_guides_auto_colors = 0
+"let g:indent_guides_guide_size = 1
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=lightgrey
+"autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey
 
-" tmuxline.vim
-" https://github.com/edkolev/tmuxline.vim
+call vundle#end()            " required by vundle
+filetype plugin indent on    " required by vundle
 
-" vim-rst-tables
-" https://github.com/nvie/vim-rst-tables
-" <leader><leader>c "reformat table
-" <leader><leader>f "reflow table
-
-" vim-indent-guides
-" https://github.com/nathanaelkane/vim-indent-guides
-let g:indent_guides_auto_colors = 0
-let g:indent_guides_guide_size = 1
-autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=lightgrey
-autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey
-
-
-" BufOnly
-" https://github.com/vim-scripts/BufOnly.vim.git
-" (mirror of http://www.vim.org/scripts/script.php?script_id=1071)
-" :BufOnly unload all buffers but the current one
