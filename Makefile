@@ -38,6 +38,9 @@ bundle: folders .vim/autoload/pathogen.vim .vim/bundle/nerdtree .vim/bundle/synt
 .vim/bundle/vim-fugitive:
 	@cd .vim/bundle && git clone https://github.com/tpope/vim-fugitive
 
+.vim/bundle/tagbar:
+	@cd .vim/bundle && git clone git://github.com/majutsushi/tagbar
+
 folders: .vim/autoload .vim/bundle .vim/doc .vim/indent .vim/plugin .vim/spell .vim/syntax 
 
 .vim/autoload:

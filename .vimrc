@@ -520,6 +520,7 @@ Plugin 'tpope/vim-fugitive'
 " tagbar
 " http://www.vim.org/scripts/script.php?script_id=3465
 " https://github.com/majutsushi/tagbar.git
+Plugin 'majutsushi/tagbar'
 " taglist.vim
 " alternative(!) to tagbar
 " http://www.vim.org/scripts/script.php?script_id=273
