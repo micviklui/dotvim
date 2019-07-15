@@ -525,6 +525,11 @@ Plugin 'majutsushi/tagbar'
 " alternative(!) to tagbar
 " http://www.vim.org/scripts/script.php?script_id=273
 
+" riv.vim
+Plugin 'gu-fan/riv.vim'
+autocmd Syntax rst setlocal foldmethod=syntax
+autocmd Syntax rst normal zR
+
 " php.vim
 " http://www.vim.org/scripts/script.php?script_id=604
 
