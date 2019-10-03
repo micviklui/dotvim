@@ -126,9 +126,12 @@ set ffs=unix,dos,mac
 if has("gui_running")
     if has("win32") || has("win64")
         " set guifont=Consolas:h12
-        set guifont=DejaVu_Sans_Mono:h10:cANSI
+        " set guifont=DejaVu_Sans_Mono:h10:cANSI
+        set guifont=Ubuntu Mono:h12
         " http://vim.wikia.com/wiki/Copy,_cut_and_paste
         source $VIMRUNTIME/mswin.vim
+    else
+        set guifont=Ubuntu\ Mono\ 12
     endif
 endif
 
