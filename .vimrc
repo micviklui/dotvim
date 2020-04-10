@@ -597,6 +597,10 @@ Plugin 'jeetsukumaran/vim-buffergator'
 "autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=lightgrey
 "autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey
 
+" Highlight the exact differences, based on characters and words
+Plugin 'rickhowe/diffchar.vim'
+
+
 call vundle#end()            " required by vundle
 filetype plugin indent on    " required by vundle
 
