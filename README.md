@@ -12,6 +12,7 @@ Requirements for an IDE
 * go to definition
 * refactoring
 * debugging
+* diff (character-wise)
 
 Install dotvim
 --------------
@@ -31,6 +32,41 @@ cd vim/src
 ./configure --enable-pythoninterp --with-features=huge --prefix=...
 make && ...
 ...
+```
+
+Plugins
+-------
+
+```
+~/.vim> tree -L 2
+.
+├── bundle
+│   ├── ctrlp.vim
+│   ├── diffchar.vim
+│   ├── nerdtree
+│   ├── riv.vim
+│   ├── syntastic
+│   ├── tagbar
+│   ├── vim-airline
+│   ├── vim-airline-themes
+│   ├── vim-autopep8
+│   ├── vim-autotag
+│   ├── vim-buffergator
+│   ├── vim-clang-format
+│   ├── vim-fugitive
+│   ├── Vundle.vim
+│   └── YouCompleteMe
+├── ftplugin
+│   ├── c.vim
+│   ├── pep8.py
+│   └── python.vim
+├── indent
+│   └── python.vim
+├── spell
+│   ├── en.utf-8.add
+│   └── en.utf-8.add.spl
+└── syntax
+    └── php.vim
 ```
 
 Usage in Windows
