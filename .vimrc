@@ -549,16 +549,19 @@ let g:airline_theme = 'powerlineish'
 "" ctrlp.vim
 "" Full path fuzzy file, buffer, mru, tag, ... finder for Vim.
 "" https://github.com/kien/ctrlp.vim.git
-"Plugin 'kien/ctrlp.vim.git'
+Plugin 'ctrlpvim/ctrlp.vim'
 "let g:ctrlp_map = '<c-p>'
 "" Use a leader instead of the actual named binding
 ""nmap <leader>p :CtrlP<cr>
 "" https://joshldavis.com/2014/04/05/vim-tab-madness-buffers-vs-tabs/
 "" default ignores
-""let g:ctrlp_custom_ignore = {
-""  \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
-""  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
-""\}
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
+  \ 'file': '\v\.(exe|so|dll|class)$',
+\}
+if executable('rg')
+  let g:ctrlp_user_command = 'rg %s --files --hidden --color=never --glob ""'
+endif
 "" only list checked-in files
 "let g:ctrlp_user_command = {
 "  \ 'types': {
@@ -579,7 +582,7 @@ let g:airline_theme = 'powerlineish'
 ""nmap <leader>bb :CtrlPBuffer<cr>
 ""nmap <leader>bm :CtrlPMixed<cr>
 ""nmap <leader>bs :CtrlPMRU<cr>
-"nnoremap <leader>. :CtrlPTag<cr>
+nnoremap <leader>. :CtrlPTag<cr>
 
 " vim-buffergator
 " list, select and switch between buffers.
