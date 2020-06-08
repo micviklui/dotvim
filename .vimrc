@@ -573,11 +573,11 @@ endif
 "" only search within local repo (root dir contains .git)
 "" or make current dir root
 "" in large repos: "touch .ctrlp" to specify root dir
-"let g:ctrlp_root_markers = ['.ctrlp']
+let g:ctrlp_root_markers = ['.ctrlp']
 "" Use the nearest .git directory as the cwd
 "" This makes a lot of sense if you are working on a project that is in version
 "" control. It also supports works with .svn, .hg, .bzr.
-"let g:ctrlp_working_path_mode = 'r'
+let g:ctrlp_working_path_mode = 'r'
 "" Easy bindings for its various modes
 ""nmap <leader>bb :CtrlPBuffer<cr>
 ""nmap <leader>bm :CtrlPMixed<cr>
